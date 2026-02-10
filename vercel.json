@@ -8,12 +8,6 @@
     "JWT_SECRET": "@jwt_secret",
     "GEMINI_API_KEY": "@gemini_api_key"
   },
-  "rewrites": [
-    {
-      "source": "/api/v1/:path*",
-      "destination": "/api/:path*"
-    }
-  ],
   "routes": [
     {
       "src": "/api/v1/(.*)",
