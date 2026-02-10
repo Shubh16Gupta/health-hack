@@ -3,11 +3,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "frontend/build",
   "framework": "create-react-app",
-  "env": {
-    "MONGODB_URL": "@mongodb_url",
-    "JWT_SECRET": "@jwt_secret",
-    "GEMINI_API_KEY": "@gemini_api_key"
-  },
   "routes": [
     {
       "src": "/api/v1/(.*)",
