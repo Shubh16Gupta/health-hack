@@ -8,9 +8,7 @@
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
     "start": "cd backend && npm start"
   },
-  "dependencies": {
-    "jsonwebtoken": "^9.0.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "concurrently": "^8.2.0"
   },
