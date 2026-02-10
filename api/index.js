@@ -14,12 +14,27 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// Connect database
-require("../../backend/config/database").connect();
+// Connect database only once, not on every request
+let dbConnected = false;
+const connectDB = async () => {
+  if (dbConnected) return;
+  try {
+    await require("../../backend/config/database").connect();
+    dbConnected = true;
+  } catch (err) {
+    console.error("DB connection error:", err);
+  }
+};
 
 // Routes
 const authRoutes = require("../../backend/routes/authRoutes");
 const chatRoutes = require("../../backend/routes/chatRoutes");
+
+// Lazy connect on first request
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 app.use("/v1", authRoutes);
 app.use("/v1", chatRoutes);
