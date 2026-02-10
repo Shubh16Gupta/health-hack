@@ -2,7 +2,7 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "frontend/build",
-  "framework": "react",
+  "framework": "create-react-app",
   "env": {
     "MONGODB_URL": "@mongodb_url",
     "JWT_SECRET": "@jwt_secret",
