@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8000;
 
 const cors = require("cors");
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
   credentials: true
 }));
 
@@ -25,6 +25,16 @@ app.use("/api/v1", user);
 const chatRoutes = require("./routes/chatRoutes");
 app.use("/api/v1", chatRoutes);
 
-app.listen(PORT, () => {
-  console.log(`app is running at ${PORT}`);
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK", message: "Backend is running" });
 });
+
+// For local development only
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`app is running at ${PORT}`);
+  });
+}
+
+module.exports = app;
